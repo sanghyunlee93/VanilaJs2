@@ -1,6 +1,7 @@
 const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
+const range = document.getElementById("jsRange");
 
 //canvas에 사이즈값 주기
 canvas.width = document.getElementsByClassName("canvas")[0].offsetWidth;
@@ -36,6 +37,11 @@ function changeColorClick(event) {
   ctx.strokeStyle = color;
 }
 
+function handleRangeChange(event) {
+  const size = event.target.value;
+  ctx.lineWidth = size;
+}
+
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
@@ -46,3 +52,7 @@ if (canvas) {
 Array.from(colors).forEach((color) =>
   color.addEventListener("click", changeColorClick)
 );
+
+if (range) {
+  range.addEventListener("input", handleRangeChange);
+}
